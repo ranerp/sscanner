@@ -1,0 +1,85 @@
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Order values"
+            android:id="@+id/textView" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" style="@style/titleOne"
+            android:background="@color/titleOne"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/scrap_copper"
+            android:id="@+id/footerCopperTitle"
+            android:textStyle="bold"
+            android:layout_below="@+id/textView" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/footerScraCopperView"
+            android:inputType="number"
+            android:layout_below="@+id/footerCopperTitle" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/empty_reels"
+            android:id="@+id/emptyReelsTitle"
+            android:textStyle="bold" android:layout_below="@+id/footerScraCopperView"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/footerEmptyReelsView"
+            android:inputType="number"
+            android:layout_below="@+id/emptyReelsTitle" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/total_pallets"
+            android:id="@+id/footerTotalPalletsTitle"
+            android:textStyle="bold" android:layout_below="@+id/footerEmptyReelsView"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/footerTotalPalletsView" android:layout_below="@+id/footerTotalPalletsTitle"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:inputType="number"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/total_products"
+            android:id="@+id/footerTotalProductsTitle" android:layout_below="@+id/footerTotalPalletsView"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/footerTotalProductsView" android:layout_below="@+id/footerTotalProductsTitle"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:inputType="number"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:drawableTop="@drawable/ic_save"
+            android:id="@+id/footerSaveButton" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+            android:onClick="onFooterSaveClicked" android:minWidth="100dp" android:minHeight="80dp"
+            android:textSize="12sp"/>
+</RelativeLayout>

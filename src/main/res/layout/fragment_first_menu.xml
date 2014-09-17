@@ -1,0 +1,122 @@
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Active order:"
+            android:id="@+id/activeOrderTitle" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:textStyle="bold" android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/dateCreatedTitle" android:layout_alignEnd="@+id/dateCreatedTitle"
+            android:padding="2dp" android:background="@color/greenBackground"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Date created:"
+            android:id="@+id/dateCreatedTitle" android:layout_below="@+id/activeOrderTitle"
+            android:textStyle="bold" android:padding="2dp" android:background="@color/titleOne"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/activeOrderView"
+            android:padding="2dp"
+            android:layout_above="@+id/dateCreatedView" android:layout_toRightOf="@+id/activeOrderTitle"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true" android:background="@color/greenBackground"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/dateCreatedView"
+            android:padding="2dp"
+            android:layout_alignTop="@+id/dateCreatedTitle" android:layout_toRightOf="@+id/dateCreatedTitle"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+            android:background="@color/titleOne" android:layout_alignBottom="@+id/dateCreatedTitle"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New order"
+            android:drawableTop="@drawable/ic_new_order"
+            android:id="@+id/newOrderButton"
+            android:minWidth="160dp"
+            android:minHeight="160dp" android:onClick="onNewOrderClicked"
+            android:layout_above="@+id/horFillerRight" android:layout_toLeftOf="@+id/vertFiller"
+            android:layout_below="@+id/dateCreatedTitle" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_marginTop="60dp" android:layout_marginLeft="50dp"
+            android:textSize="14sp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Orders archive"
+            android:drawableTop="@drawable/ic_archive"
+            android:id="@+id/ordersArchiveButton"
+            android:minWidth="150dp"
+            android:minHeight="160dp"
+            android:onClick="onOrderArchiveButtonClicked"
+            android:layout_above="@+id/horFillerRight" android:layout_toRightOf="@+id/vertFiller"
+            android:layout_below="@+id/dateCreatedView" android:layout_alignRight="@+id/dateCreatedView"
+            android:layout_alignEnd="@+id/dateCreatedView" android:layout_marginRight="50dp"
+            android:layout_marginTop="60dp" android:textSize="14sp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info template"
+            android:drawableTop="@drawable/ic_template"
+            android:id="@+id/button"
+            android:minWidth="160dp" android:minHeight="160dp"
+            android:onClick="onOrderTemplateButtonClicked"
+            android:layout_below="@+id/horFillerRight"
+            android:layout_above="@+id/deleteOrderSwitch"
+            android:layout_marginBottom="30dp" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_toLeftOf="@+id/vertFiller"
+            android:layout_marginLeft="50dp" android:textSize="14sp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email template"
+            android:drawableTop="@drawable/ic_email"
+            android:id="@+id/emailTemplateButton"
+            android:minHeight="160dp" android:minWidth="150dp"
+            android:onClick="onEmailTemplateButtonClicked"
+            android:layout_below="@+id/horFillerRight" android:layout_toRightOf="@+id/vertFiller"
+            android:layout_alignRight="@+id/deleteOrderButton" android:layout_alignEnd="@+id/deleteOrderButton"
+            android:layout_marginRight="50dp"
+            android:layout_alignBottom="@+id/button" android:textSize="14sp"/>
+    <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deleteOrderSwitch"
+            android:checked="false"
+            android:onClick="onSwitchClick" android:textOn="Yes"
+            android:textOff="No"
+            android:layout_alignTop="@+id/deleteOrderButton" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:drawableTop="@drawable/ic_delete"
+            android:id="@+id/deleteOrderButton"
+            android:minWidth="100dp" android:minHeight="80dp"
+            android:enabled="false" android:onClick="onDeleteOrderClicked"
+            android:layout_alignParentBottom="true" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" android:textSize="12sp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/vertFiller"
+            android:minWidth="30dp" android:layout_below="@+id/dateCreatedView" android:layout_centerHorizontal="true"
+            android:layout_above="@+id/deleteOrderSwitch"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/horFillerRight" android:layout_toRightOf="@+id/vertFiller"
+            android:layout_alignRight="@+id/emailTemplateButton" android:layout_alignEnd="@+id/emailTemplateButton"
+            android:layout_centerVertical="true" android:minHeight="30dp"/>
+</RelativeLayout>

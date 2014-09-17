@@ -1,0 +1,91 @@
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/order_number"
+            android:id="@+id/itemEditOrderNumberTitle" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:textStyle="bold" android:padding="5dp"
+            android:background="@color/greenBackground"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/toggle_material_code_on_off"
+            android:id="@+id/itemEditMaterialCodeTitle" android:layout_below="@+id/itemEditOrderNumberTitle"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:textStyle="bold" android:padding="5dp" android:layout_above="@+id/itemEditSalesOrderView"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/toggle_sales_order_on_off"
+            android:id="@+id/itemEditSalesOrderTitle" android:layout_below="@+id/itemEditMaterialCodeTitle" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_alignRight="@+id/itemEditMaterialCodeTitle"
+            android:layout_alignEnd="@+id/itemEditMaterialCodeTitle" android:textStyle="bold" android:padding="5dp"
+            android:layout_above="@+id/itemEditQuantityTitle"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/quantity"
+            android:id="@+id/itemEditQuantityTitle"
+            android:textStyle="bold" android:padding="5dp"
+            android:layout_toLeftOf="@+id/itemEditOrderNumberView" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_below="@+id/itemEditSalesOrderView"
+            android:layout_alignBottom="@+id/itemEditQuantityView"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/itemEditOrderNumberView" android:layout_above="@+id/itemEditMaterialCodeTitle"
+            android:layout_toRightOf="@+id/itemEditOrderNumberTitle" android:layout_alignParentTop="true"
+            android:padding="5dp" android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+            android:background="@color/greenBackground"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:ems="10"
+            android:id="@+id/itemEditMaterialCodeView" android:layout_below="@+id/itemEditOrderNumberTitle"
+            android:layout_toRightOf="@+id/itemEditMaterialCodeTitle" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:ems="10"
+            android:id="@+id/itemEditSalesOrderView" android:layout_below="@+id/itemEditMaterialCodeView"
+            android:layout_toRightOf="@+id/itemEditSalesOrderTitle"
+            android:layout_alignRight="@+id/itemEditMaterialCodeView"
+            android:layout_alignEnd="@+id/itemEditMaterialCodeView"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:ems="10"
+            android:id="@+id/itemEditQuantityView"
+            android:layout_below="@+id/itemEditSalesOrderView" android:layout_toRightOf="@+id/itemEditQuantityTitle"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:drawableTop="@drawable/ic_save"
+            android:id="@+id/itemEditSaveButton"
+            android:minWidth="100dp"
+            android:minHeight="80dp"
+            android:layout_below="@+id/itemEditQuantityTitle" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_marginTop="50dp" android:textSize="12sp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:drawableTop="@drawable/ic_back"
+            android:id="@+id/itemEditCancelButton"
+            android:minHeight="80dp" android:minWidth="100dp"
+            android:layout_alignTop="@+id/itemEditSaveButton" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" android:textSize="12sp"/>
+</RelativeLayout>

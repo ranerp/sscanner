@@ -1,0 +1,38 @@
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Order archive"
+            android:id="@+id/orderArchiveTitle" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" style="@style/titleOne"
+            android:background="@color/titleOne"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:drawableTop="@drawable/ic_back"
+            android:id="@+id/orderArchiveBackButton"
+            android:onClick="onOrderArchiveBackClicked" android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+            android:minWidth="100dp" android:minHeight="80dp" android:textSize="12sp"/>
+    <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderArchiveListView" android:layout_below="@+id/orderArchiveTitle" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+            android:layout_above="@+id/orderArchiveDeleteButton"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:drawableTop="@drawable/ic_delete"
+            android:id="@+id/orderArchiveDeleteButton"
+            android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:onClick="onOrderArchiveDeleteClicked"
+            android:minWidth="100dp" android:minHeight="80dp" android:textSize="12sp"/>
+</RelativeLayout>

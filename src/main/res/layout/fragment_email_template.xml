@@ -1,0 +1,85 @@
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:drawableTop="@drawable/ic_save"
+            android:id="@+id/emailTemplateSaveButton" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+            android:onClick="onEmailTemplateSaveClicked" android:textSize="12sp" android:minHeight="80dp"
+            android:minWidth="100dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Email Template"
+            android:id="@+id/textView" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" style="@style/titleOne" android:background="@color/titleOne"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/recipient"
+            android:id="@+id/emailTemplateRecipientTitle" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_below="@+id/textView"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/emailTemplateRecipientView" android:layout_below="@+id/emailTemplateRecipientTitle" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/from"
+            android:id="@+id/emailTemplateFromTitle" android:layout_below="@+id/emailTemplateRecipientView" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" android:textStyle="bold"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/emailTemplateFromView" android:layout_below="@+id/emailTemplateFromTitle"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/subject"
+            android:id="@+id/emailTemplateSubjectTitle" android:layout_below="@+id/emailTemplateFromView"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/emailTemplateSubjectView" android:layout_below="@+id/emailTemplateSubjectTitle"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/body"
+            android:id="@+id/emailTemplateBodyTitle" android:layout_below="@+id/emailTemplateSubjectView"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/emailTemplateBodyView" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" android:layout_above="@+id/emailTemplateSaveButton"
+            android:layout_below="@+id/emailTemplateBodyTitle"/>
+</RelativeLayout>

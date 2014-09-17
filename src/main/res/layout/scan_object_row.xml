@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/quantity"
+            android:id="@+id/scanRowQuantityTitle"
+            android:textStyle="bold"
+            android:clickable="false"
+            android:layout_below="@+id/salesOrderToggle" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/rowSalesOrderView" android:layout_above="@+id/scanRowEditButton"
+            android:gravity="center_vertical|right"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center"
+            android:id="@+id/scanRowTitle" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/greenBackground"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
+    <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="Yes"
+            android:textOff="No"
+            android:id="@+id/scanRowDeleteSwitch"
+            android:checked="false"
+            android:onClick="onScanRowSwitchClicked"
+            android:layout_alignBottom="@+id/scanRowEditButton" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:id="@+id/scanRowEditButton"
+            android:layout_below="@+id/rowQuantityView" android:layout_alignRight="@+id/rowQuantityView"
+            android:layout_alignEnd="@+id/rowQuantityView" android:onClick="onItemEditClicked" android:textSize="14sp"/>
+    <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Material Code"
+            android:textOn="@string/toggle_material_code_on_off"
+            android:textOff="@string/toggle_material_code_on_off"
+            android:id="@+id/materialCodeToggle"
+            android:checked="false"
+            android:onClick="onMaterialCodeToggleClicked"
+            android:layout_below="@+id/rowOrderNumberView" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_alignRight="@+id/orderNumberToggle"
+            android:layout_alignEnd="@+id/orderNumberToggle"/>
+    <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sales order"
+            android:textOn="@string/toggle_sales_order_on_off"
+            android:textOff="@string/toggle_sales_order_on_off"
+            android:id="@+id/salesOrderToggle" android:layout_below="@+id/materialCodeToggle"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:onClick="onSalesOrderToggleClicked" android:layout_alignRight="@+id/materialCodeToggle"
+            android:layout_alignEnd="@+id/materialCodeToggle"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/rowOrderNumberView"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:minHeight="40dp"
+            android:text="asd" android:paddingLeft="10dp"
+            android:layout_below="@+id/scanRowTitle"
+            android:layout_toRightOf="@+id/orderNumberToggle"
+            android:layout_alignBottom="@+id/orderNumberToggle" android:layout_alignRight="@+id/rowMaterialCodeView"
+            android:layout_alignEnd="@+id/rowMaterialCodeView"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/rowMaterialCodeView"
+            android:layout_above="@+id/salesOrderToggle"
+            android:gravity="center_vertical" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" android:paddingEnd="10dp"
+            android:paddingStart="10dp" android:paddingLeft="10dp" android:text="asd"
+            android:layout_alignTop="@+id/materialCodeToggle" android:layout_toRightOf="@+id/materialCodeToggle"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/rowSalesOrderView" android:layout_below="@+id/rowMaterialCodeView"
+            android:layout_toRightOf="@+id/salesOrderToggle"
+            android:layout_above="@+id/scanRowQuantityTitle"
+            android:gravity="center_vertical" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="asd" android:paddingLeft="10dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/rowQuantityView"
+            android:minHeight="40dp"
+            android:gravity="center_vertical" android:layout_below="@+id/salesOrderToggle"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/scanRowQuantityTitle" android:paddingLeft="10dp"
+            android:text="asd"/>
+    <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderNumberToggle"
+            android:textOn="@string/toggle_order_number_on_off"
+            android:textOff="@string/toggle_order_number_on_off"
+            android:checked="false" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:layout_below="@+id/scanRowTitle"
+            android:onClick="onOrderNumberToggleClicked"/>
+</RelativeLayout>

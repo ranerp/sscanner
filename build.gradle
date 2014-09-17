@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.9.+'
+    }
+}
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+    maven { url 'http://files.couchbase.com/maven2/' }
+}
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion '20.0.0'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 20
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:19.+'
+    compile 'com.android.support:support-v4:19.+'
+    compile 'com.android.support:support-v13:18.0.+'
+    compile 'com.google.zxing:android-integration:3.1.0'
+    compile 'com.couchbase.lite:couchbase-lite-android:0.0.0-451'
+    compile 'com.joanzapata.pdfview:android-pdfview:1.0.+@aar'
+    compile files('libs/itextpdf-5.5.2.jar')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
