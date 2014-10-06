@@ -1,4 +1,9 @@
 buildscript {
+    configurations {
+        compile.exclude module: 'stax'
+        compile.exclude module: 'stax-api'
+        compile.exclude module: 'xpp3'
+    }
     repositories {
         mavenCentral()
     }
@@ -48,6 +53,9 @@ dependencies {
     compile 'com.google.zxing:android-integration:3.1.0'
     compile 'com.couchbase.lite:couchbase-lite-android:0.0.0-451'
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.+@aar'
+    compile 'org.apache.poi:poi:3.10.1'
+    compile 'org.apache.poi:poi:3.11-beta2'
+    compile 'com.hp.gagawa:gagawa:1.0.1'
     compile files('libs/itextpdf-5.5.2.jar')
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

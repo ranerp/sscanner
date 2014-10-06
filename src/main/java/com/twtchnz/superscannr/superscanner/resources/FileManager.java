@@ -8,26 +8,32 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.twtchnz.superscannr.superscanner.utils.Utils;
+import org.apache.poi.hpsf.Util;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
+import java.util.logging.Logger;
 
 public class FileManager {
 
-    private File pdfStorageDir;
+    private File fileStorageDir;
 
     private File appDir;
 
     private Document document;
 
-    private String fileExtension = ".pdf";
+    private HSSFWorkbook workbook;
+
+    private String pdfExtension = ".pdf";
+
+    private String xlsExtension = ".xls";
 
     public FileManager(Context context) {
         if(isExternalStorageWritable())
-            pdfStorageDir = getStorageDir();
+            fileStorageDir = getStorageDir();
         else
-            pdfStorageDir = context.getDir(Utils.PDF_INT_DIR_NAME, Context.MODE_PRIVATE);
+            fileStorageDir = context.getDir(Utils.PDF_INT_DIR_NAME, Context.MODE_PRIVATE);
 
         appDir = context.getFilesDir();
 
@@ -54,8 +60,12 @@ public class FileManager {
         return file;
     }
 
-    public String getFilePath(String fileName) {
-        return getPdfStorageDir() + "/" + fileName + fileExtension;
+    public String getPdfFilePath(String fileName) {
+        return getFileStorageDir().getPath() + "/" + fileName + getPdfExtension();
+    }
+
+    public String getXlsFilePath(String fileName) {
+        return getFileStorageDir().getPath() + "/" + fileName + getXlsExtension();
     }
 
     public boolean doesFileExist(String filePath) {
@@ -63,9 +73,11 @@ public class FileManager {
         return file.exists();
     }
 
-    public File getPdfStorageDir() { return pdfStorageDir; }
+    public File getFileStorageDir() { return fileStorageDir; }
 
-    public String getFileExtension() { return fileExtension; }
+    public String getPdfExtension() { return pdfExtension; }
+
+    public String getXlsExtension() { return xlsExtension; }
 
     public File getAppDir() { return appDir; }
 
@@ -89,5 +101,27 @@ public class FileManager {
     public void closeDocument() throws DocumentException, FileNotFoundException {
         document.close();
         document = null;
+    }
+
+    public HSSFWorkbook startWorkBook() {
+        workbook = new HSSFWorkbook();
+
+        return workbook;
+    }
+
+    public void writeWorkBook(String filePath) throws Exception {
+        FileOutputStream out = new FileOutputStream(filePath);
+        workbook.write(out);
+        out.close();
+    }
+
+    public HSSFWorkbook getWorkBook(String filePath) throws IOException {
+        File file = new File(filePath);
+        FileInputStream inputStream = new FileInputStream(file);
+        POIFSFileSystem fileSystem = new POIFSFileSystem(inputStream);
+
+        HSSFWorkbook workbook = new HSSFWorkbook(fileSystem);
+
+        return workbook;
     }
 }

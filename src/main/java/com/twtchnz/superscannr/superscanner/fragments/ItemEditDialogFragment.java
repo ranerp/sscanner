@@ -1,14 +1,8 @@
 package com.twtchnz.superscannr.superscanner.fragments;
 
-
-
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +12,6 @@ import android.widget.TextView;
 import com.twtchnz.superscannr.superscanner.R;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.BarCodeObject;
 import com.twtchnz.superscannr.superscanner.resources.ResourceManager;
-import com.twtchnz.superscannr.superscanner.utils.Utils;
 
 public class ItemEditDialogFragment extends DialogFragment {
 

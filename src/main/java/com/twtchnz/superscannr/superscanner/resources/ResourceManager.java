@@ -2,13 +2,14 @@ package com.twtchnz.superscannr.superscanner.resources;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.*;
 import com.twtchnz.superscannr.superscanner.utils.Utils;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -60,7 +61,7 @@ public class ResourceManager {
     public void activateNewOrder() {
         String id = UUID.randomUUID().toString();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(Utils.DATE_FORMAT_DATABASE);
         Calendar calendar = GregorianCalendar.getInstance();
 
         Date dateNow = calendar.getTime();
@@ -70,10 +71,10 @@ public class ResourceManager {
 
         String name = Utils.ORDER_NAME + index;
         String fileName = Utils.ORDER_PDF_FILE_NAME + index;
-        String filePath = fileManager.getFilePath(fileName);
-        boolean fileExists = false;
+        String pdfFilePath = fileManager.getPdfFilePath(fileName);
+        String xlsFilePath = fileManager.getXlsFilePath(fileName);
 
-        MainInfoObject mainInfoObject = new MainInfoObject(date, fileName, name, filePath, fileExists);
+        MainInfoObject mainInfoObject = new MainInfoObject(String.valueOf(index), date, fileName, name, pdfFilePath, xlsFilePath, false, false);
 
         order = new Order(databaseManager.getDatabase(), id);
         order.init(orderHeaderTemplate.getOrderTemplate(), mainInfoObject);
@@ -115,10 +116,19 @@ public class ResourceManager {
 
     private void resolveFileExist() {
         MainInfoObject mainInfoObject = order.getMainInfo();
-        boolean fileExists = fileManager.doesFileExist(mainInfoObject.getFilePath());
+        boolean pdfFileExists = fileManager.doesFileExist(mainInfoObject.getPdfFilePath());
+        boolean xlsFileExists = fileManager.doesFileExist(mainInfoObject.getXlsFilePath());
 
-        if (!fileExists && mainInfoObject.isFileExists())
-            order.setFilePath("", false);
+        if (!pdfFileExists && mainInfoObject.isPdfFileExists())
+            order.setPdfFilePath("", false);
+        else if(pdfFileExists && !mainInfoObject.isPdfFileExists())
+            order.setPdfFilePath(fileManager.getPdfFilePath(mainInfoObject.getFileName()), true);
+
+        if(!xlsFileExists && mainInfoObject.isXlsFileExists())
+            order.setXlsFilePath("", false);
+        else if(xlsFileExists && !mainInfoObject.isXlsFileExists())
+            order.setXlsFilePath(fileManager.getXlsFilePath(mainInfoObject.getFileName()), true);
+
     }
 
     public boolean isFileExists(String filePath) {
@@ -161,8 +171,8 @@ public class ResourceManager {
 
     public Document startDocument() throws DocumentException, FileNotFoundException {
         MainInfoObject mainInfoObject = order.getMainInfo();
-        String filePath = fileManager.getFilePath(mainInfoObject.getFileName());
-        order.setFilePath(filePath, true);
+        String filePath = fileManager.getPdfFilePath(mainInfoObject.getFileName());
+        order.setPdfFilePath(filePath, true);
 
         return fileManager.startDocument(filePath);
     }
@@ -171,5 +181,20 @@ public class ResourceManager {
         fileManager.closeDocument();
         resolveFileExist();
     }
+
+    public HSSFWorkbook startWorkBook() {
+        return fileManager.startWorkBook();
+    }
+
+    public void writeWorkBook(MainInfoObject mainInfoObject) throws Exception {
+        String filePath = fileManager.getXlsFilePath(mainInfoObject.getFileName());
+        order.setXlsFilePath(filePath, true);
+
+        fileManager.writeWorkBook(filePath);
+
+        resolveFileExist();
+    }
+
+    public HSSFWorkbook getWorkBook(String filePath) throws IOException { return fileManager.getWorkBook(filePath); }
 
 }

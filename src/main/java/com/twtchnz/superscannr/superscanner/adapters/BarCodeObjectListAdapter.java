@@ -66,7 +66,9 @@ public class BarCodeObjectListAdapter extends ArrayAdapter<BarCodeObject> {
         notifyDataSetChanged();
     }
 
-    public ArrayList<BarCodeObject> getBarCodeObjects() { return barCodeObjects; }
+    public ArrayList<BarCodeObject> getBarCodeObjects() {
+        return barCodeObjects;
+    }
 
     public void addAll(ArrayList<BarCodeObject> barCodeObjects) {
         this.barCodeObjects.clear();

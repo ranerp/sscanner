@@ -13,6 +13,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import com.twtchnz.superscannr.superscanner.R;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.OrderInfoObject;
+import com.twtchnz.superscannr.superscanner.utils.DateFormatter;
 import com.twtchnz.superscannr.superscanner.utils.Utils;
 
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class OrdersInfoListAdapter extends ArrayAdapter<OrderInfoObject> {
         holder.objectPosition = position;
         holder.idView.setText(holder.object.getID());
         holder.nameView.setText(holder.object.getName());
-        holder.dateView.setText(holder.object.getDate());
+        holder.dateView.setText(DateFormatter.formatDate(Utils.DATE_FORMAT_DATABASE, holder.object.getDate(), Utils.DATE_FORMAT_IN_APP));
 
         holder.deleteSwitch.setTag(holder);
         holder.activeButton.setTag(holder);

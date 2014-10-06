@@ -5,13 +5,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-import com.twtchnz.superscannr.superscanner.adapters.BarCodeObjectListAdapter;
 import com.twtchnz.superscannr.superscanner.adapters.CustomViewPager;
 import com.twtchnz.superscannr.superscanner.adapters.SectionPagerAdapter;
 import com.twtchnz.superscannr.superscanner.fragments.*;
@@ -41,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
     ActiveOrderHeaderFragment activeOrderHeaderFragment;
     ActiveOrderFooterFragment activeOrderFooterFragment;
 
-    PdfFragment pdfFragment;
+    FileFragment fileFragment;
 
     SendEmailFragment sendEmailFragment;
 
@@ -77,7 +74,7 @@ public class MainActivity extends ActionBarActivity {
             scanFragment = new ScanFragment(resourceManager);
             activeOrderHeaderFragment = new ActiveOrderHeaderFragment(resourceManager);
             activeOrderFooterFragment = new ActiveOrderFooterFragment(resourceManager);
-            pdfFragment = new PdfFragment(resourceManager);
+            fileFragment = new FileFragment(resourceManager);
             sendEmailFragment = new SendEmailFragment(resourceManager);
 
 
@@ -89,7 +86,7 @@ public class MainActivity extends ActionBarActivity {
             fragments.add(scanFragment);
             fragments.add(activeOrderHeaderFragment);
             fragments.add(activeOrderFooterFragment);
-            fragments.add(pdfFragment);
+            fragments.add(fileFragment);
             fragments.add(sendEmailFragment);
 
             sectionPagerAdapter = new SectionPagerAdapter(getFragmentManager(), fragments, fragments.indexOf(mainFragment));
@@ -246,7 +243,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onPdfCreateClicked(View view) {
-        pdfFragment.onPdfCreateClicked(view);
+        fileFragment.onPdfCreateClicked(view);
 
         sendEmailFragment.setViews();
 
@@ -255,13 +252,32 @@ public class MainActivity extends ActionBarActivity {
 
     public void onPdfViewClicked(View view) {
         viewPager.setPagerEnabled(false);
-        pdfFragment.onPdfViewClicked(view);
+        fileFragment.onPdfViewClicked(view);
     }
 
     public void onPdfCloseClicked(View view) {
         viewPager.setPagerEnabled(true);
-        pdfFragment.onPdfCloseClicked(view);
+        fileFragment.onPdfCloseClicked(view);
     }
+
+    public void onXlsCreateClicked(View view) {
+        fileFragment.onXlsCreateClicked(view);
+
+        sendEmailFragment.setViews();
+
+        Toast.makeText(this, getString(R.string.xls_create_message), Toast.LENGTH_SHORT).show();
+    }
+
+    public void onXlsViewClicked(View view) {
+        viewPager.setPagerEnabled(false);
+        fileFragment.onXlsViewClicked(view);
+    }
+
+    public void onXlsCloseClicked(View view) {
+        viewPager.setPagerEnabled(true);
+        fileFragment.onXlsCloseClicked(view);
+    }
+
 
     public void onEmailSendClicked(View view) {
         Intent emailIntent = sendEmailFragment.onEmailSendClicked(view);

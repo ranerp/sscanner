@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,9 @@ import com.twtchnz.superscannr.superscanner.R;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.EmailTemplateObject;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.MainInfoObject;
 import com.twtchnz.superscannr.superscanner.resources.ResourceManager;
+import com.twtchnz.superscannr.superscanner.utils.Utils;
+
+import java.util.ArrayList;
 
 public class SendEmailFragment extends Fragment {
 
@@ -71,15 +75,19 @@ public class SendEmailFragment extends Fragment {
         subjectView.setText(emailTemplateObject.getSubject());
         bodyView.setText(emailTemplateObject.getBody());
 
-        if(mainInfoObject.isFileExists())
-            attachmentsView.setText(mainInfoObject.getFileName());
-        else
-            attachmentsView.setText(getString(R.string.no_attachments_message));
+        String attachments  = getString(R.string.no_attachments_message);
 
-        if(!resourceManager.isFileExists(mainInfoObject.getFilePath()))
-            sendEmailButton.setEnabled(false);
-        else
+        if(mainInfoObject.isPdfFileExists())
+            attachments = mainInfoObject.getPdfFilePath();
+        if(mainInfoObject.isXlsFileExists())
+            attachments += ", " + mainInfoObject.getXlsFilePath();
+
+        attachmentsView.setText(attachments);
+
+        if(resourceManager.isFileExists(mainInfoObject.getXlsFilePath()))
             sendEmailButton.setEnabled(true);
+        else
+            sendEmailButton.setEnabled(false);
     }
 
     public Intent onEmailSendClicked(View view) {
@@ -89,7 +97,7 @@ public class SendEmailFragment extends Fragment {
     private Intent setUpEmail() {
         MainInfoObject mainInfoObject = resourceManager.getOrderInfo();
 
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("application/pdf");
 
@@ -100,7 +108,14 @@ public class SendEmailFragment extends Fragment {
         emailIntent.putExtra(Intent.EXTRA_CC, CC);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subjectView.getText().toString());
         emailIntent.putExtra(Intent.EXTRA_TEXT, bodyView.getText().toString());
-        emailIntent.putExtra(Intent.EXTRA_STREAM, resourceManager.getFileUri(mainInfoObject.getFilePath()));
+
+        ArrayList<Uri> uris = new ArrayList<Uri>();
+        uris.add(resourceManager.getFileUri(mainInfoObject.getXlsFilePath()));
+
+        if(mainInfoObject.isPdfFileExists())
+            uris.add(resourceManager.getFileUri(mainInfoObject.getPdfFilePath()));
+
+        emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 
         return emailIntent;
     }

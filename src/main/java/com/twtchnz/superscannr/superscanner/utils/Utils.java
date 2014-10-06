@@ -4,6 +4,14 @@ public final class Utils {
 
     public final static String APP_TAG = "SuperScannr";
 
+    public final static String WEBVIEW_ASSETS_LOCATION = "file:///android_asset/";
+
+    public final static String DATE_FORMAT_DATABASE = "yyMMddHHmmss";
+
+    public final static String DATE_FORMAT_IN_FILE = "dd.MM.yyyy";
+
+    public final static String DATE_FORMAT_IN_APP = "dd.MM.yyyy HH:mm:ss";
+
     ///////////////// FILE /////////////////////////////////////////////////////////////
 
     public final static String PDF_EXT_DIR_NAME = "SuperScannr";

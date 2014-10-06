@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.twtchnz.superscannr.superscanner.R;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.MainInfoObject;
 import com.twtchnz.superscannr.superscanner.resources.ResourceManager;
+import com.twtchnz.superscannr.superscanner.utils.DateFormatter;
 import com.twtchnz.superscannr.superscanner.utils.Utils;
 
 import java.util.Map;
@@ -73,7 +74,7 @@ public class FirstMenuFragment extends Fragment {
         MainInfoObject mainInfoObject = resourceManager.getOrderInfo();
 
         activeOrderView.setText(mainInfoObject.getName());
-        dateCreatedView.setText(mainInfoObject.getDate());
+        dateCreatedView.setText(DateFormatter.formatDate(Utils.DATE_FORMAT_DATABASE, mainInfoObject.getDate(), Utils.DATE_FORMAT_IN_APP));
 
         deleteOrderSwitch.setChecked(false);
         deleteOrderButton.setEnabled(false);

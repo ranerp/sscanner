@@ -50,5 +50,6 @@
     <string name="quantity">Quantity</string>
     <string name="item_edit_dialog">Edit item</string>
     <string name="order_number_exists">Item with that order number already exists</string>
+    <string name="xls_create_message">XLS created.</string>
 
 </resources>

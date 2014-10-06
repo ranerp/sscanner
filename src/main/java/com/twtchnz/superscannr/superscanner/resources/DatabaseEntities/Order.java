@@ -17,9 +17,12 @@ public class Order extends DatabaseObject {
     static {
         initValues.put("name", "No active order");
         initValues.put("file_name", "");
-        initValues.put("file_path", "");
-        initValues.put("file_exists", false);
+        initValues.put("pdf_file_path", "");
+        initValues.put("xls_file_path", "");
+        initValues.put("pdf_file_exists", false);
+        initValues.put("xls_file_exists", false);
         initValues.put("date", "");
+        initValues.put("index", "");
 
         header.put("title", "");
         header.put("company", "");
@@ -61,11 +64,14 @@ public class Order extends DatabaseObject {
         header.put("city", orderHeaderObject.getCity());
         newProperties.put("header", header);
 
+        newProperties.put("index", mainInfoObject.getIndex());
         newProperties.put("date", mainInfoObject.getDate());
         newProperties.put("name", mainInfoObject.getName());
         newProperties.put("file_name", mainInfoObject.getFileName());
-        newProperties.put("file_exists", mainInfoObject.isFileExists());
-        newProperties.put("file_path", mainInfoObject.getFilePath());
+        newProperties.put("pdf_file_exists", mainInfoObject.isPdfFileExists());
+        newProperties.put("pdf_file_path", mainInfoObject.getPdfFilePath());
+        newProperties.put("xls_file_exists", mainInfoObject.isXlsFileExists());
+        newProperties.put("xls_file_path", mainInfoObject.getXlsFilePath());
 
         save(newProperties);
     }
@@ -73,18 +79,30 @@ public class Order extends DatabaseObject {
     public MainInfoObject getMainInfo() {
         getLatestDocumentRevision();
 
-        return new MainInfoObject((String) doc.getProperty("date"),
+        return new MainInfoObject( (String) doc.getProperty("index"),
+                (String) doc.getProperty("date"),
                 (String) doc.getProperty("file_name"),
                 (String) doc.getProperty("name"),
-                (String) doc.getProperty("file_path"),
-                (Boolean) doc.getProperty("file_exists"));
+                (String) doc.getProperty("pdf_file_path"),
+                (String) doc.getProperty("xls_file_path"),
+                (Boolean) doc.getProperty("pdf_file_exists"),
+                (Boolean) doc.getProperty("xls_file_exists"));
     }
 
-    public void setFilePath(String filePath, boolean fileExists) {
+    public void setPdfFilePath(String filePath, boolean fileExists) {
         Map<String, Object> newProperties = getLatestProperties();
 
-        newProperties.put("file_path", filePath);
-        newProperties.put("file_exists", fileExists);
+        newProperties.put("pdf_file_path", filePath);
+        newProperties.put("pdf_file_exists", fileExists);
+
+        save(newProperties);
+    }
+
+    public void setXlsFilePath(String filePath, boolean fileExists) {
+        Map<String, Object> newProperties = getLatestProperties();
+
+        newProperties.put("xls_file_path", filePath);
+        newProperties.put("xls_file_exists", fileExists);
 
         save(newProperties);
     }
