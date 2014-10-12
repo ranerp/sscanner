@@ -2,15 +2,16 @@ package com.twtchnz.superscannr.superscanner.fragments;
 
 
 
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+import com.twtchnz.superscannr.superscanner.MainActivity;
 import com.twtchnz.superscannr.superscanner.R;
 import com.twtchnz.superscannr.superscanner.adapters.OrdersInfoListAdapter;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.OrderInfoObject;
@@ -26,7 +27,9 @@ public class OrderArchiveFragment extends Fragment {
     ResourceManager resourceManager;
 
     private ListView orderArchiveView;
-    private Button deleteButton;
+
+    private MenuItem deleteButton;
+    private Menu menu;
 
     private OrdersInfoListAdapter ordersInfoListAdapter;
     private ArrayList<OrderInfoObject> orderInfoObjects;
@@ -35,6 +38,11 @@ public class OrderArchiveFragment extends Fragment {
         this.resourceManager = resourceManager;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,12 +52,33 @@ public class OrderArchiveFragment extends Fragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+        menuInflater.inflate(R.menu.order_archive_menu, menu);
+        this.menu = menu;
+        this.deleteButton = this.menu.findItem(R.id.order_archive_delete_button);
+        this.deleteButton.setEnabled(false);
+        this.deleteButton.setIcon(R.drawable.ic_delete_not_active);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.order_archive_delete_button:
+                onOrderArchiveDeleteClicked();
+                return true;
+            case R.id.order_archive_back_button:
+                onOrderArchiveBackClicked();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         orderArchiveView = (ListView) getView().findViewById(R.id.orderArchiveListView);
-        deleteButton = (Button) getView().findViewById(R.id.orderArchiveDeleteButton);
-        deleteButton.setEnabled(false);
 
         orderInfoObjects = resourceManager.getOrderInfoObjects();
         ordersInfoListAdapter = new OrdersInfoListAdapter(getActivity(), R.layout.order_archive_row, orderInfoObjects);
@@ -62,21 +91,38 @@ public class OrderArchiveFragment extends Fragment {
 
         ordersInfoListAdapter.tryPushToDeleteSet(holder.deleteSwitch, holder.object.getID(), holder.object);
 
-        if(ordersInfoListAdapter.isDeleteSetEmpty())
-            deleteButton.setEnabled(false);
-        else
-            deleteButton.setEnabled(true);
+        if (deleteButton != null) {
+            if (ordersInfoListAdapter.isDeleteSetEmpty()) {
+                deleteButton.setEnabled(false);
+                deleteButton.setIcon(R.drawable.ic_delete_not_active);
+            } else {
+                deleteButton.setEnabled(true);
+                deleteButton.setIcon(R.drawable.ic_delete);
+            }
+        }
 
     }
 
-    public void onOrderArchiveDeleteClicked(View view) {
+    public void onOrderArchiveDeleteClicked() {
         Object[] deleteIds = ordersInfoListAdapter.getDeleteIds();
 
         if(deleteIds.length > 0)
             resourceManager.deleteOrders(ordersInfoListAdapter.getDeleteIds());
 
         ordersInfoListAdapter.removeRows();
-        deleteButton.setEnabled(false);
+
+        if (deleteButton != null) {
+            deleteButton.setEnabled(false);
+            deleteButton.setIcon(R.drawable.ic_delete_not_active);
+        }
+
+        Toast.makeText(getActivity(), R.string.orders_delete_message, Toast.LENGTH_SHORT).show();
+
+        ((MainActivity) getActivity()).setPagerAdapterScrollLimit();
+    }
+
+    public void onOrderArchiveBackClicked() {
+        ((MainActivity) getActivity()).goToMainPage();
     }
 
     public void onOrderArchiveActivateClicked(View view) {

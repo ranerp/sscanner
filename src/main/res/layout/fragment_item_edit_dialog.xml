@@ -69,23 +69,18 @@
             android:id="@+id/itemEditQuantityView"
             android:layout_below="@+id/itemEditSalesOrderView" android:layout_toRightOf="@+id/itemEditQuantityTitle"
             android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
-    <Button
+    <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:drawableTop="@drawable/ic_save"
-            android:id="@+id/itemEditSaveButton"
-            android:minWidth="100dp"
-            android:minHeight="80dp"
+            android:id="@+id/itemEditSaveButton" android:src="@drawable/ic_save"
+            android:contentDescription="@string/save"
             android:layout_below="@+id/itemEditQuantityTitle" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_marginTop="50dp" android:textSize="12sp"/>
-    <Button
+            android:layout_alignParentStart="true" android:layout_marginTop="50dp"/>
+    <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:drawableTop="@drawable/ic_back"
             android:id="@+id/itemEditCancelButton"
-            android:minHeight="80dp" android:minWidth="100dp"
+            android:contentDescription="@string/save" android:src="@drawable/ic_back"
             android:layout_alignTop="@+id/itemEditSaveButton" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" android:textSize="12sp"/>
+            android:layout_alignParentEnd="true"/>
 </RelativeLayout>

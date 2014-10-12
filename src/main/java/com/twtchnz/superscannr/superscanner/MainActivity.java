@@ -1,8 +1,11 @@
 package com.twtchnz.superscannr.superscanner;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
+    ActionBar actionBar;
 
     ResourceManager resourceManager;
 
@@ -94,6 +98,47 @@ public class MainActivity extends ActionBarActivity {
 
             viewPager = (CustomViewPager) findViewById(R.id.pager);
             viewPager.setAdapter(sectionPagerAdapter);
+
+            actionBar = getSupportActionBar();
+            actionBar.setDisplayShowHomeEnabled(false);
+            actionBar.setDisplayShowTitleEnabled(false);
+
+            ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+
+                @Override
+                public void onTabSelected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction fragmentTransaction) {
+                    viewPager.setCurrentItem(tab.getPosition());
+                }
+
+                @Override
+                public void onTabUnselected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction fragmentTransaction) {
+
+                }
+
+                @Override
+                public void onTabReselected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction fragmentTransaction) {
+
+                }
+            };
+
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+            actionBar.addTab(actionBar.newTab().setText(getString(R.string.title_order_archive)).setTabListener(tabListener));
+            actionBar.addTab(actionBar.newTab().setText(getString(R.string.title_order_info_template)).setTabListener(tabListener));
+            actionBar.addTab(actionBar.newTab().setText(getString(R.string.title_email_template)).setTabListener(tabListener));
+            actionBar.addTab(actionBar.newTab().setText(getString(R.string.title_main)).setTabListener(tabListener));
+            actionBar.addTab(actionBar.newTab().setText(getString(R.string.title_scan_items)).setTabListener(tabListener));
+            actionBar.addTab(actionBar.newTab().setText(getString(R.string.title_active_order_info)).setTabListener(tabListener));
+            actionBar.addTab(actionBar.newTab().setText(getString(R.string.title_active_order_footer)).setTabListener(tabListener));
+            actionBar.addTab(actionBar.newTab().setText(getString(R.string.title_file)).setTabListener(tabListener));
+            actionBar.addTab(actionBar.newTab().setText(getString(R.string.title_send_email)).setTabListener(tabListener));
+
+            viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+                @Override
+                public void onPageSelected(int position) {
+                    getActionBar().setSelectedNavigationItem(position);
+                }
+            });
+
             viewPager.setCurrentItem(fragments.indexOf(mainFragment));
         }
 
@@ -103,8 +148,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+       getMenuInflater().inflate(R.menu.menu, menu);
+       return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -117,7 +162,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setPagerAdapterScrollLimit() {
+    public void setPagerAdapterScrollLimit() {
 
         isDummyOrder = resourceManager.isDummyOrder();
         if(isDummyOrder)
@@ -126,14 +171,8 @@ public class MainActivity extends ActionBarActivity {
             sectionPagerAdapter.setCount(sectionPagerAdapter.getFragmentsSize());
     }
 
-    public void onScanClick(View view) {
-        scanFragment.onScanClick(view);
-    }
-
-    public void onScanDeleteClicked(View view) {
-        scanFragment.onScanDeleteClicked(view);
-
-        Toast.makeText(this, getString(R.string.items_deleted_message), Toast.LENGTH_SHORT).show();
+    public void goToMainPage() {
+        viewPager.setCurrentItem(sectionPagerAdapter.getMainFragmentPosition());
     }
 
     public void onItemEditClicked(View view) {
@@ -163,38 +202,14 @@ public class MainActivity extends ActionBarActivity {
         viewPager.setCurrentItem(toPosition);
     }
 
-    public void onOrderArchiveBackClicked(View view) {
-        viewPager.setCurrentItem(sectionPagerAdapter.getMainFragmentPosition());
-    }
-
     public void onOrderTemplateButtonClicked(View view) {
         int toPosition = sectionPagerAdapter.getFragmentPosition(orderTemplateFragment);
         viewPager.setCurrentItem(toPosition);
     }
 
-    public void onOrderTemplateSaveClicked(View view) {
-        orderTemplateFragment.onOrderTemplateSaveClicked(view);
-        viewPager.setCurrentItem(sectionPagerAdapter.getMainFragmentPosition());
-
-        Toast.makeText(this, R.string.order_template_save_message, Toast.LENGTH_SHORT).show();
-    }
-
-    public void onActiveOrderHeaderSaveClicked(View view) {
-        activeOrderHeaderFragment.onActiveOrderHeaderSaveClicked(view);
-
-        Toast.makeText(this, R.string.active_order_header_save_message, Toast.LENGTH_SHORT).show();
-    }
-
     public void onEmailTemplateButtonClicked(View view) {
         int toPosition = sectionPagerAdapter.getFragmentPosition(emailTemplateFragment);
         viewPager.setCurrentItem(toPosition);
-    }
-
-    public void onEmailTemplateSaveClicked(View view) {
-        emailTemplateFragment.onEmailTemplateSaveClicked(view);
-        viewPager.setCurrentItem(sectionPagerAdapter.getMainFragmentPosition());
-
-        Toast.makeText(this, R.string.email_template_save_message, Toast.LENGTH_SHORT).show();
     }
 
     public void onNewOrderClicked(View view) {
@@ -207,23 +222,9 @@ public class MainActivity extends ActionBarActivity {
         Toast.makeText(this, R.string.new_order_made_message, Toast.LENGTH_SHORT).show();
     }
 
-    public void onFooterSaveClicked(View view) {
-        activeOrderFooterFragment.onFooterSaveClicked(view);
-
-        Toast.makeText(this, R.string.active_order_footer_save_message, Toast.LENGTH_SHORT).show();
-    }
-
     public void onOrderArchiveRowSwitchClicked(View view) {
         orderArchiveFragment.onOrderArchiveRowSwitchClicked(view);
 
-    }
-
-    public void onOrderArchiveDeleteClicked(View view) {
-        orderArchiveFragment.onOrderArchiveDeleteClicked(view);
-
-        setPagerAdapterScrollLimit();
-
-        Toast.makeText(this, R.string.orders_delete_message, Toast.LENGTH_SHORT).show();
     }
 
     public void onOrderArchiveActivateClicked(View view) {
@@ -276,12 +277,5 @@ public class MainActivity extends ActionBarActivity {
     public void onXlsCloseClicked(View view) {
         viewPager.setPagerEnabled(true);
         fileFragment.onXlsCloseClicked(view);
-    }
-
-
-    public void onEmailSendClicked(View view) {
-        Intent emailIntent = sendEmailFragment.onEmailSendClicked(view);
-
-        startActivity(emailIntent);
     }
 }

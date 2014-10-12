@@ -4,11 +4,11 @@ package com.twtchnz.superscannr.superscanner.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.twtchnz.superscannr.superscanner.R;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.OrderHeaderObject;
 import com.twtchnz.superscannr.superscanner.resources.ResourceManager;
@@ -16,6 +16,11 @@ import com.twtchnz.superscannr.superscanner.resources.ResourceManager;
 public class ActiveOrderHeaderFragment extends Fragment {
 
     ResourceManager resourceManager;
+
+    TextView titleTitle;
+    TextView companyTitle;
+    TextView addressTitle;
+    TextView cityTitle;
 
     EditText titleView;
     EditText companyView;
@@ -26,6 +31,11 @@ public class ActiveOrderHeaderFragment extends Fragment {
         this.resourceManager = resourceManager;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,13 +45,41 @@ public class ActiveOrderHeaderFragment extends Fragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+        menuInflater.inflate(R.menu.active_order_header, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.active_order_header_save_button:
+                onActiveOrderHeaderSaveClicked();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        titleTitle = (TextView) getView().findViewById(R.id.activeOrderHeaderTitleTitle);
+        companyTitle = (TextView) getView().findViewById(R.id.activeOrderHeaderCompanyTitle);
+        addressTitle = (TextView) getView().findViewById(R.id.activeOrderHeaderAddressTitle);
+        cityTitle = (TextView) getView().findViewById(R.id.activeOrderHeaderCityTitle);
+
         titleView = (EditText) getView().findViewById(R.id.activeOrderHeaderTitleView);
+        titleView.setOnFocusChangeListener(new FocusChangeAlphaListener(titleTitle, titleView));
+
         companyView = (EditText) getView().findViewById(R.id.activeOrderHeaderCompanyView);
+        companyView.setOnFocusChangeListener(new FocusChangeAlphaListener(companyTitle, companyView));
+
         addressView = (EditText) getView().findViewById(R.id.activeOrderHeaderAddressView);
+        addressView.setOnFocusChangeListener(new FocusChangeAlphaListener(addressTitle, addressView));
+
         cityView = (EditText) getView().findViewById(R.id.activeOrderHeaderCityView);
+        cityView.setOnFocusChangeListener(new FocusChangeAlphaListener(cityTitle, cityView));
 
     }
 
@@ -61,7 +99,7 @@ public class ActiveOrderHeaderFragment extends Fragment {
         cityView.setText(orderHeaderObject.getCity());
     }
 
-    public void onActiveOrderHeaderSaveClicked(View view) {
+    public void onActiveOrderHeaderSaveClicked() {
         String title = titleView.getText().toString();
         String company = companyView.getText().toString();
         String address = addressView.getText().toString();
@@ -70,6 +108,8 @@ public class ActiveOrderHeaderFragment extends Fragment {
         OrderHeaderObject orderHeaderObject = new OrderHeaderObject(title, company, address, city);
 
         resourceManager.setActiveOrderHeader(orderHeaderObject);
+
+        Toast.makeText(getActivity(), R.string.active_order_header_save_message, Toast.LENGTH_SHORT).show();
     }
 
 

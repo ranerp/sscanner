@@ -1,77 +1,81 @@
 <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView
-            android:layout_width="wrap_content"
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/textView" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" style="@style/titleOne"
-            android:background="@color/titleOne" android:text="Info template"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            android:drawableTop="@drawable/ic_save"
-            android:id="@+id/orderTemplateSaveButton" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
-            android:onClick="onOrderTemplateSaveClicked" android:minHeight="80dp"
-            android:minWidth="100dp" android:textSize="12sp"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/title"
-            android:id="@+id/orderTemplateTitleTitle" android:layout_below="@+id/textView" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/orderTemplateTitleView" android:layout_below="@+id/orderTemplateTitleTitle"
             android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
+            android:padding="5dp" android:layout_alignParentTop="true" android:id="@+id/orderTemplateTitleLayout">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/title"
+                android:id="@+id/orderTemplateTitleTitle"  android:textStyle="bold" android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/orderTemplateTitleView" android:alpha="0.5"
+                android:padding="5dp" android:background="@drawable/round_edittext" android:inputType="text"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/company"
-            android:id="@+id/textView2" android:layout_below="@+id/orderTemplateTitleView"
             android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
+            android:padding="5dp" android:id="@+id/orderTemplateCompanyLayout" android:layout_below="@+id/orderTemplateTitleLayout">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/company"
+                android:id="@+id/orderTemplateCompanyTitle" android:textStyle="bold"
+                android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/orderTemplateCompanyView"  android:padding="5dp"
+                android:background="@drawable/round_edittext" android:alpha="0.5" android:inputType="text"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/orderTemplateCompanyView" android:layout_below="@+id/textView2" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/address"
-            android:id="@+id/orderTemplateAddressTitle" android:layout_below="@+id/orderTemplateCompanyView"
             android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
+            android:padding="5dp" android:id="@+id/orderTemplateAddressLayout" android:layout_below="@+id/orderTemplateCompanyLayout">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/address"
+                android:id="@+id/orderTemplateAddressTitle" android:textStyle="bold"
+                android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/orderTemplateAddressView" android:alpha="0.5"
+                android:padding="5dp" android:background="@drawable/round_edittext" android:inputType="text"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/orderTemplateAddressView" android:layout_below="@+id/orderTemplateAddressTitle"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/city"
-            android:id="@+id/orderTemplateCityTitle" android:layout_below="@+id/orderTemplateAddressView"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/orderTemplateCityView"
-            android:layout_below="@+id/orderTemplateCityTitle" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:padding="5dp"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true" android:id="@+id/orderTemplateCityLayout"
+            android:layout_below="@+id/orderTemplateAddressLayout">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/city"
+                android:id="@+id/orderTemplateCityTitle" android:textStyle="bold"
+                android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/orderTemplateCityView"
+                android:background="@drawable/round_edittext" android:alpha="0.5"
+                android:padding="5dp" android:inputType="text"/>
+    </LinearLayout>
 </RelativeLayout>

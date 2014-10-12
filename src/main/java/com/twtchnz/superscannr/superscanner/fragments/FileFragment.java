@@ -39,7 +39,6 @@ public class FileFragment extends Fragment implements com.joanzapata.pdfview.lis
 
     private ResourceManager resourceManager;
 
-    private TextView pdfFragmentTitle;
     private TextView pdfLocationTitle;
     private TextView pdfLocationView;
 
@@ -80,7 +79,6 @@ public class FileFragment extends Fragment implements com.joanzapata.pdfview.lis
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        pdfFragmentTitle = (TextView) getView().findViewById(R.id.pdfFragmentTitle);
         pdfLocationTitle = (TextView) getView().findViewById(R.id.pdfLocationTitle);
         pdfLocationView = (TextView) getView().findViewById(R.id.pdfLocationView);
 
@@ -698,7 +696,6 @@ public class FileFragment extends Fragment implements com.joanzapata.pdfview.lis
 
         pdfLocationTitle.setVisibility(View.INVISIBLE);
         pdfLocationView.setVisibility(View.INVISIBLE);
-        pdfFragmentTitle.setVisibility(View.INVISIBLE);
 
         xlsLocationTitle.setVisibility(View.INVISIBLE);
         xlsLocationView.setVisibility(View.INVISIBLE);
@@ -725,7 +722,6 @@ public class FileFragment extends Fragment implements com.joanzapata.pdfview.lis
         xlsWebView.setVisibility(View.INVISIBLE);
         pdfLocationTitle.setVisibility(View.VISIBLE);
         pdfLocationView.setVisibility(View.VISIBLE);
-        pdfFragmentTitle.setVisibility(View.VISIBLE);
 
         xlsLocationTitle.setVisibility(View.VISIBLE);
         xlsLocationView.setVisibility(View.VISIBLE);
@@ -756,7 +752,6 @@ public class FileFragment extends Fragment implements com.joanzapata.pdfview.lis
         pdfView.setVisibility(View.VISIBLE);
         pdfLocationTitle.setVisibility(View.INVISIBLE);
         pdfLocationView.setVisibility(View.INVISIBLE);
-        pdfFragmentTitle.setVisibility(View.INVISIBLE);
 
         xlsLocationTitle.setVisibility(View.INVISIBLE);
         xlsLocationView.setVisibility(View.INVISIBLE);
@@ -788,7 +783,6 @@ public class FileFragment extends Fragment implements com.joanzapata.pdfview.lis
         pdfView.setVisibility(View.INVISIBLE);
         pdfLocationTitle.setVisibility(View.VISIBLE);
         pdfLocationView.setVisibility(View.VISIBLE);
-        pdfFragmentTitle.setVisibility(View.VISIBLE);
 
         xlsLocationTitle.setVisibility(View.VISIBLE);
         xlsLocationView.setVisibility(View.VISIBLE);

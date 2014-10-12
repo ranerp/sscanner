@@ -3,14 +3,10 @@ package com.twtchnz.superscannr.superscanner.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Switch;
-import android.widget.TextView;
+import android.widget.*;
 import com.twtchnz.superscannr.superscanner.R;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.OrderInfoObject;
 import com.twtchnz.superscannr.superscanner.utils.DateFormatter;
@@ -31,7 +27,7 @@ public class OrdersInfoListAdapter extends ArrayAdapter<OrderInfoObject> {
         public TextView nameView;
         public TextView dateView;
         public Switch deleteSwitch;
-        public Button activeButton;
+        public ImageButton activeButton;
     }
 
     private int layoutResourceId;
@@ -84,7 +80,7 @@ public class OrdersInfoListAdapter extends ArrayAdapter<OrderInfoObject> {
         holder.nameView = (TextView) convertView.findViewById(R.id.orderArchiveNameView);
         holder.dateView = (TextView) convertView.findViewById(R.id.orderArchiveDateView);
         holder.deleteSwitch = (Switch) convertView.findViewById(R.id.orderArchiveDeleteSwitch);
-        holder.activeButton = (Button) convertView.findViewById(R.id.orderArchiveActivateButton);
+        holder.activeButton = (ImageButton) convertView.findViewById(R.id.orderArchiveActivateButton);
 
         return holder;
     }

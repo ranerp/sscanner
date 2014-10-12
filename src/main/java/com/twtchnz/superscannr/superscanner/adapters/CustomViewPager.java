@@ -1,13 +1,18 @@
 package com.twtchnz.superscannr.superscanner.adapters;
 
+import android.app.Fragment;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
+import com.twtchnz.superscannr.superscanner.utils.Utils;
 
 public class CustomViewPager extends ViewPager {
 
     private boolean enabled;
+    private SectionPagerAdapter sectionPagerAdapter;
 
     public CustomViewPager(Context context) {
         super(context);
@@ -19,6 +24,12 @@ public class CustomViewPager extends ViewPager {
         super(context, attrs);
 
         this.enabled = true;
+    }
+
+    public void setAdapter(SectionPagerAdapter adapter) {
+        super.setAdapter(adapter);
+
+        this.sectionPagerAdapter = adapter;
     }
 
     @Override
@@ -40,4 +51,6 @@ public class CustomViewPager extends ViewPager {
     public void setPagerEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+
+    public Fragment getFragmentAt(int position) { return sectionPagerAdapter.getItem(position); }
 }

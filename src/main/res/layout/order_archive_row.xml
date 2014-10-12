@@ -12,17 +12,18 @@
             android:id="@+id/orderArchiveDateTitle"
             android:textStyle="bold"
             android:padding="2dp"
-            android:layout_below="@+id/orderArchiveNameTitle"
+            android:layout_toEndOf="@+id/orderArchiveActivateButton" android:layout_below="@+id/orderArchiveNameTitle"
             android:layout_toRightOf="@+id/orderArchiveActivateButton"
-            android:layout_toLeftOf="@+id/orderArchiveIdView"/>
+            android:layout_toLeftOf="@+id/orderArchiveNameView" android:layout_toStartOf="@+id/orderArchiveNameView"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/orderArchiveDateView"
             android:padding="2dp"
-            android:layout_below="@+id/orderArchiveNameView" android:layout_toRightOf="@+id/orderArchiveDateTitle"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
+            android:layout_toEndOf="@+id/orderArchiveDateTitle" android:layout_below="@+id/orderArchiveNameView"
+            android:layout_toRightOf="@+id/orderArchiveDateTitle" android:layout_alignRight="@+id/orderArchiveNameView"
+            android:layout_alignEnd="@+id/orderArchiveNameView"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,6 +32,7 @@
             android:id="@+id/orderArchiveNameTitle"
             android:textStyle="bold"
             android:padding="2dp"
+            android:layout_toEndOf="@+id/orderArchiveActivateButton"
             android:layout_alignParentTop="true" android:layout_toRightOf="@+id/orderArchiveActivateButton"/>
     <TextView
             android:layout_width="wrap_content"
@@ -38,26 +40,17 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/orderArchiveNameView"
             android:padding="2dp"
-            android:layout_alignParentTop="true" android:layout_alignLeft="@+id/orderArchiveIdView"
-            android:layout_alignStart="@+id/orderArchiveIdView" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_toEndOf="@+id/orderArchiveNameTitle"
+            android:layout_alignParentTop="true" android:layout_toRightOf="@+id/orderArchiveNameTitle"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/orderArchiveIdView"
             android:visibility="invisible"
-            android:layout_below="@+id/orderArchiveNameTitle" android:layout_toRightOf="@+id/orderArchiveNameTitle"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_activate"
-            android:id="@+id/orderArchiveActivateButton"
-            android:clickable="true"
-            android:onClick="onOrderArchiveActivateClicked" android:textSize="12sp"
-            android:text="Activate"
-            android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:layout_toEndOf="@+id/orderArchiveActivateButton" android:layout_below="@+id/orderArchiveDateTitle"
+            android:layout_toRightOf="@+id/orderArchiveActivateButton"/>
     <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,6 +58,14 @@
             android:checked="false"
             android:onClick="onOrderArchiveRowSwitchClicked"
             android:textOn="Yes" android:textOff="No"
-            android:layout_alignBottom="@+id/orderArchiveActivateButton" android:layout_alignParentRight="true"
+            android:hint="@string/delete"
+            android:layout_below="@+id/orderArchiveDateView" android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderArchiveActivateButton"
+            android:src="@drawable/ic_activate"
+            android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:onClick="onOrderArchiveActivateClicked"/>
 </RelativeLayout>

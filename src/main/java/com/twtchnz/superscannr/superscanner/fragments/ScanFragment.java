@@ -1,14 +1,10 @@
 package com.twtchnz.superscannr.superscanner.fragments;
 
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,7 +15,6 @@ import com.twtchnz.superscannr.superscanner.R;
 import com.twtchnz.superscannr.superscanner.adapters.BarCodeObjectListAdapter;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.BarCodeObject;
 import com.twtchnz.superscannr.superscanner.resources.ResourceManager;
-import com.twtchnz.superscannr.superscanner.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -33,8 +28,8 @@ public class ScanFragment extends Fragment {
 
     private ResourceManager resourceManager;
 
-    private Button deleteButton;
-    private Button scanButton;
+    private MenuItem deleteButton;
+    private Menu menu;
 
     private ScanStates scanState;
     private BarCodeObject activeScanObject;
@@ -46,9 +41,38 @@ public class ScanFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_second_menu, container, false);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+        menuInflater.inflate(R.menu.items_menu, menu);
+        this.menu = menu;
+        this.deleteButton = this.menu.findItem(R.id.items_delete_button);
+        this.deleteButton.setEnabled(false);
+        this.deleteButton.setIcon(R.drawable.ic_delete_not_active);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.items_delete_button:
+                onScanDeleteClicked();
+                return true;
+            case R.id.items_scan_button:
+                onScanClick();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -58,10 +82,6 @@ public class ScanFragment extends Fragment {
         scanObjectsListView = (ListView) getView().findViewById(R.id.scanObjectsListView);
 
         scanState = ScanStates.NEW_ORDER;
-        scanButton = (Button) getView().findViewById(R.id.scanButton);
-
-        deleteButton = (Button) getView().findViewById(R.id.scanDeleteButton);
-        deleteButton.setEnabled(false);
 
         barCodeObjectListAdapter = new BarCodeObjectListAdapter(getActivity(), this, R.layout.scan_object_row, new ArrayList<BarCodeObject>());
         scanObjectsListView.setAdapter(barCodeObjectListAdapter);
@@ -73,11 +93,14 @@ public class ScanFragment extends Fragment {
         barCodeObjectListAdapter.addAll(resourceManager.getBarCodeObjects());
     }
 
-    public void onScanDeleteClicked(View view) {
+    public void onScanDeleteClicked() {
         resourceManager.deleteBarCodeObjects(barCodeObjectListAdapter.getDeleteIds());
         barCodeObjectListAdapter.removeRows();
 
+        Toast.makeText(getActivity(), getString(R.string.items_deleted_message), Toast.LENGTH_SHORT).show();
+
         deleteButton.setEnabled(false);
+        deleteButton.setIcon(R.drawable.ic_delete_not_active);
     }
 
     public void onItemEditClicked(View view) {
@@ -89,7 +112,7 @@ public class ScanFragment extends Fragment {
 
     }
 
-    public void onScanClick(View view) {
+    public void onScanClick() {
         prepareForScan(ScanStates.NEW_ORDER, null, null);
         initScan();
     }
@@ -132,6 +155,7 @@ public class ScanFragment extends Fragment {
     private void initScan() {
         IntentIntegrator scanIntegration = new IntentIntegrator(this);
         scanIntegration.addExtra("SAVE_HISTORY", false);
+        scanIntegration.addExtra("SCAN_RESULT_ORIENTATION", 90);
         scanIntegration.initiateScan();
     }
 
@@ -150,10 +174,15 @@ public class ScanFragment extends Fragment {
 
         barCodeObjectListAdapter.tryPushToDeleteSet(holder.deleteSwitch, holder.object.getID(), holder.object);
 
-        if(barCodeObjectListAdapter.isDeleteSetEmpty())
-            deleteButton.setEnabled(false);
-        else
-            deleteButton.setEnabled(true);
+        if (deleteButton != null) {
+            if (barCodeObjectListAdapter.isDeleteSetEmpty()) {
+                deleteButton.setEnabled(false);
+                deleteButton.setIcon(R.drawable.ic_delete_not_active);
+            } else {
+                deleteButton.setEnabled(true);
+                deleteButton.setIcon(R.drawable.ic_delete);
+            }
+        }
     }
 
     public void onItemChanged(BarCodeObject barCodeObject) {

@@ -3,6 +3,15 @@
 
     <string name="app_name">SuperScannr</string>
     <string name="action_settings">Settings</string>
+    <string name="title_order_archive">Archive</string>
+    <string name="title_order_info_template">Info template</string>
+    <string name="title_email_template">Email template</string>
+    <string name="title_main">Main</string>
+    <string name="title_scan_items">Items</string>
+    <string name="title_active_order_info">Info</string>
+    <string name="title_active_order_footer">Values</string>
+    <string name="title_file">Files</string>
+    <string name="title_send_email">Send email</string>
     <string name="no_active_order">No active order</string>
     <string name="error_getting_barcode">No scan data received. Please try again.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -51,5 +60,10 @@
     <string name="item_edit_dialog">Edit item</string>
     <string name="order_number_exists">Item with that order number already exists</string>
     <string name="xls_create_message">XLS created.</string>
+    <string name="save">Save</string>
+    <string name="delete_order">Delete order</string>
+    <string name="delete">Delete</string>
+    <string name="back">Back</string>
+    <string name="remove">Remove</string>
 
 </resources>

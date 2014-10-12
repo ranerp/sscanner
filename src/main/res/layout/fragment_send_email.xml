@@ -1,100 +1,113 @@
 <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
-    <Button
-            android:layout_width="wrap_content"
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Send email"
-            android:drawableTop="@drawable/ic_email"
-            android:id="@+id/emailSendButton" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
-            android:onClick="onEmailSendClicked" android:textSize="12sp" android:minHeight="80dp"
-            android:minWidth="100dp"/>
-    <TextView
-            android:layout_width="wrap_content"
+            android:padding="5dp" android:id="@+id/emailSendRecipientLayout" android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/recipient"
+                android:id="@+id/emailSendRecipientTitle" android:textStyle="bold"
+                android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/emailSendRecipientView" android:alpha="0.5" android:padding="5dp"
+                android:background="@drawable/round_edittext"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/emailSendFromLayout"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Send email"
-            android:id="@+id/textView" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" style="@style/titleOne" android:background="@color/titleOne"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
+            android:padding="5dp" android:layout_below="@+id/emailSendRecipientLayout"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/from"
+                android:id="@+id/emailSendFromTitle" android:textStyle="bold" android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/emailSendFromView" android:alpha="0.5"
+                android:background="@drawable/round_edittext" android:padding="5dp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/recipient"
-            android:id="@+id/emailSendRecipientTitle" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_below="@+id/textView"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
+            android:id="@+id/emailSendSubjectLayout"
+            android:padding="5dp" android:layout_below="@+id/emailSendFromLayout" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/subject"
+                android:id="@+id/emailSendSubjectTitle" android:textStyle="bold"
+                android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/emailSendSubjectView" android:alpha="0.5"
+                android:background="@drawable/round_edittext" android:padding="5dp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/emailSendRecipientView" android:layout_below="@+id/emailSendRecipientTitle" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
+            android:padding="5dp" android:id="@+id/emailSendBodyLayout"
+            android:layout_below="@+id/emailSendSubjectLayout" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/body"
+                android:id="@+id/emailSendBodyTitle" android:textStyle="bold"
+                android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/emailSendBodyView"
+                android:alpha="0.5" android:padding="5dp" android:background="@drawable/round_edittext"
+                android:minHeight="100dp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/from"
-            android:id="@+id/emailSendFromTitle" android:layout_below="@+id/emailSendRecipientView" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/emailSendFromView" android:layout_below="@+id/emailSendFromTitle"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/subject"
-            android:id="@+id/emailSendSubjectTitle" android:layout_below="@+id/emailSendFromView"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/emailSendSubjectView" android:layout_below="@+id/emailSendSubjectTitle"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/body"
-            android:id="@+id/emailSendBodyTitle" android:layout_below="@+id/emailSendSubjectView"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/emailSendBodyView" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/emailSendBodyTitle" android:layout_above="@+id/emailSendAttachmentTitle"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/attachments_title"
-            android:id="@+id/emailSendAttachmentTitle"
-            android:layout_above="@+id/emailSendAttachmentView" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/emailSendAttachmentView" android:layout_above="@+id/emailSendButton"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"/>
+            android:padding="5dp" android:id="@+id/emailSendAttachmentLayout"
+            android:layout_below="@+id/emailSendBodyLayout" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/attachments_title"
+                android:id="@+id/emailSendAttachmentTitle"
+                android:textStyle="bold"
+                android:alpha="0.5"/>
+        <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailSendAttachmentView" android:layout_below="@+id/emailSendAttachmentLayout"
+                android:layout_alignParentLeft="true" android:layout_alignParentStart="true" android:alpha="0.5"
+                android:padding="5dp"/>
+    </LinearLayout>
 </RelativeLayout>

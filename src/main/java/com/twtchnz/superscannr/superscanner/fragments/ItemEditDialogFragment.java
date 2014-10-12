@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import com.twtchnz.superscannr.superscanner.R;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.BarCodeObject;
@@ -24,8 +24,8 @@ public class ItemEditDialogFragment extends DialogFragment {
     private EditText salesOrderView;
     private EditText quantityView;
 
-    private Button saveButton;
-    private Button cancelButton;
+    private ImageButton saveButton;
+    private ImageButton cancelButton;
 
     public ItemEditDialogFragment(ScanFragment scanFragment, ResourceManager resourceManager, BarCodeObject barCodeObject) {
         this.scanFragment = scanFragment;
@@ -45,8 +45,8 @@ public class ItemEditDialogFragment extends DialogFragment {
         salesOrderView = (EditText) rootView.findViewById(R.id.itemEditSalesOrderView);
         quantityView = (EditText) rootView.findViewById(R.id.itemEditQuantityView);
 
-        saveButton = (Button) rootView.findViewById(R.id.itemEditSaveButton);
-        cancelButton = (Button) rootView.findViewById(R.id.itemEditCancelButton);
+        saveButton = (ImageButton) rootView.findViewById(R.id.itemEditSaveButton);
+        cancelButton = (ImageButton) rootView.findViewById(R.id.itemEditCancelButton);
 
         orderNumberView.setText(barCodeObject.getOrderNumber());
         materialCodeView.setText(barCodeObject.getMaterialCode());

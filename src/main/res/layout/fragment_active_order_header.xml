@@ -1,78 +1,83 @@
 <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView
-            android:layout_width="wrap_content"
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/activeOrderHeader"
-            android:id="@+id/textView" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" style="@style/titleOne"
-            android:background="@color/titleOne"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            android:drawableTop="@drawable/ic_save"
-            android:id="@+id/activeOrderHeaderSaveButton" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
-            android:onClick="onActiveOrderHeaderSaveClicked" android:minHeight="80dp" android:minWidth="100dp"
-            android:textSize="12sp"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/title"
-            android:id="@+id/activeOrderHeaderTitleTitle" android:layout_below="@+id/textView" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/activeOrderHeaderTitleView" android:layout_below="@+id/activeOrderHeaderTitleTitle"
             android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
+            android:padding="5dp" android:layout_alignParentTop="true" android:id="@+id/activeOrderHeaderTitleLayout">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/title"
+                android:id="@+id/activeOrderHeaderTitleTitle"
+                android:textStyle="bold" android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/activeOrderHeaderTitleView"
+                android:background="@drawable/round_edittext" android:padding="5dp" android:alpha="0.5"
+                android:inputType="text"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/company"
-            android:id="@+id/activeOrderHeaderCompanyTitle" android:layout_below="@+id/activeOrderHeaderTitleView"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
+            android:padding="5dp" android:id="@+id/activeOrderHeaderCompanyLayout" android:layout_below="@+id/activeOrderHeaderTitleLayout"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/company"
+                android:id="@+id/activeOrderHeaderCompanyTitle" android:textStyle="bold"
+                android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/activeOrderHeaderCompanyView" android:padding="5dp"
+                android:background="@drawable/round_edittext" android:alpha="0.5" android:inputType="text"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/activeOrderHeaderCompanyView" android:layout_below="@+id/activeOrderHeaderCompanyTitle" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
+            android:padding="5dp" android:id="@+id/activeOrderHeaderAddressLayout" android:layout_below="@+id/activeOrderHeaderCompanyLayout"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/address"
+                android:id="@+id/activeOrderHeaderAddressTitle" android:textStyle="bold"
+                android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/activeOrderHeaderAddressView"
+                android:background="@drawable/round_edittext" android:padding="5dp" android:alpha="0.5"
+                android:inputType="text"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/address"
-            android:id="@+id/activeOrderHeaderAddressTitle" android:layout_below="@+id/activeOrderHeaderCompanyView"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/activeOrderHeaderAddressView" android:layout_below="@+id/activeOrderHeaderAddressTitle"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/city"
-            android:id="@+id/activeOrderHeaderCityTitle" android:layout_below="@+id/activeOrderHeaderAddressView"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true" android:textStyle="bold"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/activeOrderHeaderCityView"
-            android:layout_below="@+id/activeOrderHeaderCityTitle" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:padding="5dp" android:id="@+id/activeOrderHeaderCityLayout" android:layout_below="@+id/activeOrderHeaderAddressLayout"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/city"
+                android:id="@+id/activeOrderHeaderCityTitle" android:textStyle="bold"
+                android:alpha="0.5"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/activeOrderHeaderCityView"
+                android:background="@drawable/round_edittext"
+                android:padding="5dp" android:alpha="0.5" android:inputType="text"/>
+    </LinearLayout>
 </RelativeLayout>

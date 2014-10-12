@@ -2,8 +2,7 @@ package com.twtchnz.superscannr.superscanner.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
+import android.graphics.Color;;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,6 @@ import android.widget.*;
 import com.twtchnz.superscannr.superscanner.R;
 import com.twtchnz.superscannr.superscanner.fragments.ScanFragment;
 import com.twtchnz.superscannr.superscanner.resources.DatabaseEntities.BarCodeObject;
-import com.twtchnz.superscannr.superscanner.utils.Utils;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
@@ -28,7 +24,7 @@ public class BarCodeObjectListAdapter extends ArrayAdapter<BarCodeObject> {
         public ToggleButton materialCodeToggleButton;
         public ToggleButton salesOrderToggleButton;
 
-        private Button editButton;
+        private ImageButton editButton;
 
         TextView scanRowTitle;
         TextView orderNumberView;
@@ -113,7 +109,7 @@ public class BarCodeObjectListAdapter extends ArrayAdapter<BarCodeObject> {
         holder.materialCodeToggleButton = (ToggleButton) convertView.findViewById(R.id.materialCodeToggle);
         holder.salesOrderToggleButton = (ToggleButton) convertView.findViewById(R.id.salesOrderToggle);
 
-        holder.editButton = (Button) convertView.findViewById(R.id.scanRowEditButton);
+        holder.editButton = (ImageButton) convertView.findViewById(R.id.scanRowEditButton);
 
         holder.scanRowTitle = (TextView) convertView.findViewById(R.id.scanRowTitle);
         holder.materialCodeView = (TextView) convertView.findViewById(R.id.rowMaterialCodeView);

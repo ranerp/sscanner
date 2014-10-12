@@ -1,8 +1,13 @@
 <resources>
-    <color name="titleOne">#41516D</color>
-    <color name="buttonBackground">#3D3D3D</color>
-    <color name="buttonBackgroundClicked">#41516D</color>
+    <color name="fragment_background">#262626</color>
+    <color name="color_one">#074E4A</color>
+    <color name="color_two">#323531</color>
+    <color name="color_three">#5E5D4A</color>
+    <color name="color_four">#303030</color>
+    <color name="color_five">#444647</color>
+
+    <color name="fragment_title_color">#35404F</color>
+
     <color name="greenBackground">#7A9728</color>
-    <color name="active_text_view_color">#0174C1</color>
     <color name="scan_second_row_color">#353739</color>
 </resources>
